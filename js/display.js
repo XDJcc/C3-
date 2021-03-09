@@ -345,11 +345,9 @@ const string = `
     left: 70%;
     top: -10px;
   }
-  
-  
 `;
 const player = {
-  id: undefined,
+  timer: undefined,
   time: 10,
   ui: {
     demo: document.querySelector("#demo"),
@@ -380,12 +378,12 @@ const player = {
     }
   },
   play: () => {
-    player.id = setInterval(player.run, player.time);
+    player.timer = setInterval(player.run, player.time);
   },
   run: () => {
     player.n += 1;
     if (player.n > string.length) {
-      window.clearInterval(player.id);
+      window.clearInterval(player.timer);
       return;
     }
     player.ui.demo.innerText = string.substr(0, player.n);
@@ -393,7 +391,7 @@ const player = {
     player.ui.demo.scrollTop = player.ui.demo.scrollHeight;
   },
   pause: () => {
-    window.clearInterval(player.id);
+    window.clearInterval(player.timer);
   },
   slow: () => {
     player.pause();
